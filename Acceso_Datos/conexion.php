@@ -3,7 +3,7 @@
 class Database { 
     private static $instance = null;
     private $conn;
-    private $host = "postgres://plastiespumas:bbnemI5faqT00JPJnKdyNOC6ZRqfQkct@dpg-clghacuf27hc739khpmg-a.oregon-postgres.render.com/piaccess";
+    private $host = "dpg-clghacuf27hc739khpmg-a.oregon-postgres.render.com";
     private $user = "plastiespumas";
     private $pass = "bbnemI5faqT00JPJnKdyNOC6ZRqfQkct";
     private $name = "piaccess";
