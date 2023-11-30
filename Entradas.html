@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros antes y después de las 8:00 AM</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Estilo para las tablas */
+     
+
+        th,
+        td {
+            padding: 5px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+   
+    table {
+        max-width: 75%;
+        border-spacing: 0;
+        border-collapse: collapse;
+        overflow-x: auto;
+    }
+
+    table td {
+        font-size: 12px;
+    }
+</style>
+
+    </style>
+</head>
+
+<body>
+
+    <div style="display: flex; justify-content: space-around;">
+        <div id="t1">
+
+        </div>
+
+        <div id="t2">
+
+        </div>
+    </div>
+
+
+    <script>
+
+        $(document).ready(function () {
+            // Función para realizar la consulta y mostrar los resultados en una tabla
+            function mostrarRegistros(tipo) {
+                $.ajax({
+                    url: 'router.php', // Ajusta la ruta a tu archivo PHP
+                    method: 'POST',
+                    data: {
+                        accion: 'obtenerRegistros' + tipo,
+                        controlador: 'Empleados',
+                        fecha: obtenerFechaActual()
+                    },
+                    success: function (response) {
+                        var datos = JSON.parse(response);
+                        
+
+                        if (tipo == "AntesDe8AM") {
+                            construirTabla(datos,  $('#t1'), "AntesDe8AM");
+                        } else if (tipo == "DespuesDe8AM") {
+                            construirTabla(datos, $('#t2'), "DespuesDe8AM");
+                        }
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+            }
+
+            // Función para obtener la fecha actual en formato 'YYYY-MM-DD'
+            function obtenerFechaActual() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0!
+                var yyyy = today.getFullYear();
+                return yyyy + '-' + mm + '-' + dd;
+            }
+
+            // Función para construir una tabla y agregarla al contenedor especificado
+            function construirTabla(datos, contenedor, tipo) {
+    var tabla = $('<table>').addClass('table table-bordered table-hover').appendTo(contenedor);
+    var thead = $('<thead>').addClass('table-primary').appendTo(tabla);
+    var tbody = $('<tbody>').appendTo(tabla);
+
+    // Lista de columnas que quieres mostrar
+    var columnasMostradas = ['Identificacion', 'Nombre', 'Cargo', 'Tipo de acceso', 'Estado', 'Hora de ingreso'];
+    var filtro = ['identificacion', 'nombre', 'cargo', 'access_type', 'status', 'date_time'];
+
+    // Añade encabezados a la tabla solo para las columnas mostradas
+    var headerRow = $('<tr>').appendTo(thead);
+    columnasMostradas.forEach(function (columna) {
+        $('<th>').text(columna).appendTo(headerRow);
+    });
+
+    // Añade filas de datos a la tabla solo para las columnas mostradas y con filtro por access_type
+    datos.forEach(function (row, index) {
+        if (row['access_type'] === 'Entrada') {
+            var dataRow = $('<tr>').appendTo(tbody);
+
+            // Añade celdas solo para las columnas mostradas
+            filtro.forEach(function (columna) {
+                $('<td>').text(row[columna]).appendTo(dataRow);
+            });
+
+            // Asigna colores específicos a las filas según el tipo de tabla
+            if (tipo === 'AntesDe8AM') {
+                dataRow.css('background-color', (index % 2 === 0) ? 'blue' : 'blue');
+                dataRow.css('color', (index % 2 === 0) ? 'white' : 'white');
+            } else if (tipo === 'DespuesDe8AM') {
+                dataRow.css('background-color', (index % 2 === 0) ? 'red' : 'red');
+                dataRow.css('color', (index % 2 === 0) ? 'white' : 'white');
+            }
+        }
+    });
+
+    contenedor.css('overflow-x', 'auto');
+    contenedor.css('text-align', 'center');
+    tabla.css('margin', 'auto');
+}
+
+
+
+            function tablaTemprano(datos) {
+
+                var tabla = $('#contenedorTablaAntesDe8AM');
+
+                for (var i = 0; i < datos.length; i++) {
+                    var fila = $('<tr>');
+
+                    var celdaIdentificacion = $('<td>').text(datos[i].identificacion);
+                    fila.append(celdaIdentificacion);
+                    celdaIdentificacion.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    var celdaNombre = $('<td>').text(datos[i].nombre);
+                    fila.append(celdaNombre);
+                    celdaNombre.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    var celdaCargo = $('<td>').text(datos[i].cargo);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+                    var celdaCargo = $('<td>').text(datos[i].access_type);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+                    var celdaCargo = $('<td>').text(datos[i].status);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    var celdaCargo = $('<td>').text(datos[i].date_time);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    tabla.append(fila);
+                }
+            }
+
+            function tablaTarde(datos) {
+
+                var tabla = $('#contenedorTablaDespuesDe8AM');
+
+                for (var i = 0; i < datos.length; i++) {
+                    var fila = $('<tr>');
+
+                    var celdaIdentificacion = $('<td>').text(datos[i].identificacion);
+                    fila.append(celdaIdentificacion);
+                    celdaIdentificacion.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    var celdaNombre = $('<td>').text(datos[i].nombre);
+                    fila.append(celdaNombre);
+                    celdaNombre.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    var celdaCargo = $('<td>').text(datos[i].cargo);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+                    var celdaCargo = $('<td>').text(datos[i].access_type);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+                    var celdaCargo = $('<td>').text(datos[i].status);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    var celdaCargo = $('<td>').text(datos[i].date_time);
+                    fila.append(celdaCargo);
+                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
+
+                    tabla.append(fila);
+                }
+            }
+            mostrarRegistros("AntesDe8AM");
+            mostrarRegistros("DespuesDe8AM");
+        });
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

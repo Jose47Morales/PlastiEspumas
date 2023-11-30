@@ -1,0 +1,82 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #333;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+
+nav {
+    background-color: #f1f1f1;
+    overflow: hidden;
+}
+
+.link {
+    float: left;
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.contenAdmin {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #111;
+    padding-top: 20px;
+    color: white;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#contenAdmin {
+    flex: 1;
+    padding: 16px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    /* Ajusta según sea necesario */
+}
+
+#Admin {
+    /* Estilos para centrar el contenido en el div */
+    text-align: center;
+    flex-grow: 1;
+    /* Esto permite que el div crezca y ocupe el espacio restante */
+}
+
+button.link {
+    /* Alinea el botón a la derecha */
+    margin-left: auto;
+}

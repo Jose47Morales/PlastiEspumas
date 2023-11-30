@@ -1,0 +1,122 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/Inicio.css">
+</head>
+
+<body>
+    <div id="loader" class="loader"></div>
+    <div class="container">
+        <h1>Iniciar Sesión</h1>
+        <form action="" method="post">
+            <label for="usuario">Usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="button" id="myButton" ondblclick="InicioUsuario()">Iniciar Sesión</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h1>Registros</h1>
+
+    </div>
+    <Script src="librerias/jquery-3.6.3.min.js"> </Script>
+    <script src="librerias/sweetalert.min.js"></script>
+    <script>
+        function InicioUsuario() {
+
+            var accion = "IniciarSession";
+            var usuario = $("#usuario").val();
+            var password = $("#password").val();
+        
+            if (usuario == "" || password == "") {
+                alert("Faltan datos por llenar");
+            } else {
+
+                showLoader();
+                $.ajax({
+                    url: 'router.php',
+                    method: 'POST',
+                    data: {
+                        controlador: 'Login',
+                        accion: accion,
+                        usuario: usuario,
+                        password: password
+                    },
+                    success: function (response) {                     
+
+                        if (response == 2) {
+                            alert("Aun no se ha Registrado en el Dispositivo");
+                        } else if (response == 1) {
+                            limpiarCampos();
+                            CargoUsuario(usuario);
+                            hideLoader();                      
+                        } else {
+                            alert("Error de Registro");
+                        }
+
+                    },
+                    error: function (error) {
+                        console.error(error);
+                    }
+                });
+
+            }
+        }
+
+
+        function CargoUsuario(usuario) {
+            var accion = "obtenerCargo";
+
+            $.ajax({
+                url: 'router.php',
+                method: 'POST',
+                data: {
+                    controlador: 'Empleados',
+                    accion: accion,usuario:usuario             
+                },
+                success: function (response) {   
+                 var  respuesta=JSON.parse(response);
+                    if (respuesta == "Administrador") {
+                        window.location.href = "Admin.html";
+
+                    } else {
+                        window.location.href = "BienvenidaUsuario.html";
+                    }
+
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+
+        }
+
+        function limpiarCampos() {
+            var usuario = document.getElementById('usuario').value = "";;
+            var password = document.getElementById('password').value = "";;
+        }
+
+
+        function showLoader() {
+    document.getElementById("loader").style.display = "inline";
+    document.getElementById("myButton").disabled = true;
+}
+function hideLoader() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myButton").disabled = false;
+}
+
+
+    </script>
+</body>
+
+</html>
