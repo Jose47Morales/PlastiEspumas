@@ -332,6 +332,7 @@
                     data: { controlador: controlador, accion: accion}, // Datos opcionales que deseas enviar al archivo PHP
                     success: function (response) {
                         $pagina = response;
+                        console.log($pagina);
                         loadContent($pagina); 
                     },
                     error: function (xhr, status, error) {
