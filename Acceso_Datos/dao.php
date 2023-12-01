@@ -126,7 +126,7 @@ class MiDAO
                 $stmtObtenerCargo->bindParam(':identificacion', $usuario, PDO::PARAM_STR);
                 $stmtObtenerCargo->execute();
                 $cargo = $stmtObtenerCargo->fetchColumn();
-
+                session_start();
                 $_SESSION['identificacionI'] = $usuario;
                 $_SESSION['cargoI'] = $cargo;
                 $hella = $this->mostrarEmpleadoHuella($usuario);
