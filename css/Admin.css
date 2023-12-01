@@ -13,6 +13,30 @@ header {
     text-align: center;
 }
 
+button {
+    background-color: #333;
+    color: white;
+    border-radius: 15px;
+    transition: .5s;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+@media (max-widht: 750px){
+    button, select, #datepicker{
+        transform: scale(.8);
+    }
+}
+
+@media (max-widht: 550px){
+    button, select, #datepicker{
+        transform: scale(.6);
+    }
+}
+
 nav {
     background-color: #f1f1f1;
     overflow: hidden;
