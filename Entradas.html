@@ -16,7 +16,8 @@
             margin: 10px;
         }
 
-        #t1, #t2 {
+        #t1,
+        #t2 {
             width: 48%;
             margin-bottom: 10px;
         }
@@ -26,13 +27,16 @@
                 flex-direction: column;
                 align-items: center;
             }
-
-            #t1, #t2 {
+        
+            #t1,
+            #t2 {
                 width: 100%;
             }
-
-            table td {
+        
+            #t1 table,
+            #t2 table {
                 font-size: 10px;
+                max-width: 100%; /* Puedes ajustar este valor según tus necesidades */
             }
         }
 
@@ -41,8 +45,20 @@
                 font-size: 10px;
             }
 
-            table td {
+            .tables_container {
+                flex-direction: column;
+                align-items: center;
+            }
+        
+            #t1,
+            #t2 {
+                width: 100%;
+            }
+        
+            #t1 table,
+            #t2 table {
                 font-size: 8px;
+                max-width: 100%; /* Puedes ajustar este valor según tus necesidades */
             }
         }
 
@@ -78,7 +94,6 @@
             <!-- Contenido de la tabla t2 -->
         </div>
     </div>
-
 
     <script>
         $(document).ready(function () {
