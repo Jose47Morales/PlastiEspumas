@@ -120,12 +120,18 @@
                     });
                 });
             
-                // Inicializa DataTables
+                // Destruir DataTables si ya se ha inicializado
+                if ($.fn.DataTable.isDataTable(tabla)) {
+                    tabla.DataTable().destroy();
+                }
+                
+                // Inicializar DataTables
                 tabla.DataTable({
                     paging: true,
                     searching: true,
                     // Puedes añadir más opciones de configuración según tus necesidades
                 });
+
             
                 // Asigna colores específicos a las filas según el tipo de tabla
                 var filas = tbody.find('tr');
