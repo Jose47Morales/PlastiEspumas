@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('modelos/LoginModelo.php');
 require_once('repocitorios/LoginRepositorio.php');
  
@@ -32,20 +33,17 @@ class ControladorLogin
 
     public function CargoUsuarioInicio()
     {
-      session_start();
       $cargo = $_SESSION['cargoI'];
       echo $cargo;
     }
   
     public function UsuarioInicio()
     {
-      session_start();
       $usuario = $_SESSION['identificacionI'];
       echo $usuario;
     }
   
     public function cerrarSession(){
-      session_start();
       session_destroy();
     }
 
