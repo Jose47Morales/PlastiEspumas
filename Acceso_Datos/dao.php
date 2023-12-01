@@ -127,7 +127,7 @@ class MiDAO
                 $stmtObtenerCargo->execute();
                 $cargo = $stmtObtenerCargo->fetchColumn();
 
-                session_start();
+                require('../session')
 
                 // Establecer una variable de sesión
                 $_SESSION['identificacionI'] = $usuario;
