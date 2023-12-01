@@ -17,24 +17,18 @@ if (isset($_POST['controlador'])) {
     } else{
         echo "Error en el servidor: " . $resultado;
     }
-}
-
-
-
-if (isset($_GET['controlador'])) {
+} elseif (isset($_GET['controlador'])) {
     $controller = $_GET['controlador'];
     $accion = $_GET['accion'];
 
+    // Agrega la siguiente línea para imprimir la ruta construida
+    echo 'Ruta para GET: ' . 'controladores/Controlador' . $controller . '.php<br>';
 
     require 'controladores/' . 'Controlador' . $controller . '.php';
 
-
     $clase = 'Controlador' . $controller;
-
 
     $controlador = new $clase();
     $controlador->$accion();
-
-
 }
 ?>
