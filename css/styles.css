@@ -93,10 +93,9 @@ a:hover {
 
     .tables_container{
         display: grid;
-        place-items: center;
     }
 
-    #t1{
+    #t1, #t2{
         display: block;
         margin-bottom: 30px;
     }
