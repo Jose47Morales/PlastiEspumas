@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 class EmpleadosModelo{
 
 public $ID;
