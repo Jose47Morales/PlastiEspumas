@@ -211,13 +211,10 @@
         }
 
         function loadContent(page) {
-            console.log('Antes de cargar contenido, página:', page);
-        
             $.ajax({
                 url: page,
                 method: 'GET',
                 success: function (data) {
-                    console.log('Contenido cargado con éxito:', data);
                     $('#contenido').html(data);
                 },
                 error: function (xhr, status, error) {
@@ -229,7 +226,6 @@
 
             });
         
-            console.log('Después de cargar contenido');
         }
 
         entradahoy();
