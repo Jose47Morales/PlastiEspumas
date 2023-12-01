@@ -1,10 +1,4 @@
 <?php
-
-
-
-//set_include_path('c:/xampp/htdocs/UniversidadesMVC/');
-
-
 if (isset($_POST['controlador'])) {
     $controller = $_POST['controlador'];
     $accion = $_POST['accion'];
@@ -43,9 +37,4 @@ if (isset($_GET['controlador'])) {
 
 
 }
-
-
-// 
-
-
 ?>
