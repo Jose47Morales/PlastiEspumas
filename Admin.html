@@ -221,8 +221,12 @@
                     $('#contenido').html(data);
                 },
                 error: function (xhr, status, error) {
-                    console.error('Error al cargar el contenido:', error);
-                }
+                        console.error('Error al cargar el contenido:');
+                        console.log('XHR:', xhr);
+                        console.log('Status:', status);
+                        console.log('Error:', error);
+                    }
+
             });
         
             console.log('Después de cargar contenido');
