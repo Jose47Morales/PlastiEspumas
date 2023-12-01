@@ -183,13 +183,26 @@
         }
 
         function mostrarEmpleado(datos) {
-            var empleadosContainer = $("#Admin");
-            var logoContainer = document.getElementById("EmpleadoImg");
-            var empleadoItem = $("<div class='empleado-item'></div>");
-            empleadosContainer.empty();
-            empleadoItem.html("<p>ID: " + datos[0].identificacion + " Nombre: " + datos[0].nombre + "  Cargo: " + datos[0].cargo + " </p>");
-            empleadosContainer.append(empleadoItem);
-        }
+                var empleadosContainer = $("#Admin");
+                var logoContainer = document.getElementById("EmpleadoImg");
+            
+                // Verificar si datos está definido y tiene al menos un elemento
+                if (datos && datos.length > 0) {
+                    var empleadoItem = $("<div class='empleado-item'></div>");
+                    empleadosContainer.empty();
+                    
+                    // Verificar si identificacion está definido antes de intentar acceder
+                    var identificacion = datos[0].identificacion || 'No disponible';
+                    var nombre = datos[0].nombre || 'No disponible';
+                    var cargo = datos[0].cargo || 'No disponible';
+            
+                    empleadoItem.html("<p>ID: " + identificacion + " Nombre: " + nombre + "  Cargo: " + cargo + " </p>");
+                    empleadosContainer.append(empleadoItem);
+                } else {
+                    console.error('Datos no definidos o vacíos.');
+                }
+            }
+
         function entradahoy() {
             var controlador = "Empleados";
             var accion = "Hoy";
