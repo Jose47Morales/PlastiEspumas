@@ -1,4 +1,5 @@
 <?php
+session_star();
 class Database { 
     private static $instance = null;
     private $conn;
