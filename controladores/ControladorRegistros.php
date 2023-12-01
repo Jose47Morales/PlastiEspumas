@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('modelos/LogsModelo.php');
 require_once('repocitorios/RegistrosRepositorio.php');
  
