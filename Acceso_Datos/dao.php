@@ -1,5 +1,10 @@
 <?php
-session_start();
+if( !headers_sent() && '' == session_id() ) {
+    session_start();
+} else{
+    session_destroy();
+    session_start();
+}
 require_once('conexion.php');
 
 class MiDAO
