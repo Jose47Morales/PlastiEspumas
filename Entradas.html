@@ -69,7 +69,7 @@
                     },
                     success: function (response) {
                         var datos = JSON.parse(response);
-                        
+                        console.log('Datos recibidos:', datos);
 
                         if (tipo == "AntesDe8AM") {
                             construirTabla(datos,  $('#t1'), "AntesDe8AM");
@@ -95,7 +95,6 @@
             // Función para construir una tabla y agregarla al contenedor especificado
             
             function construirTabla(datos, contenedor, tipo) {
-                console.log(datos);
                 var tabla = $('<table>').addClass('table table-bordered table-hover').appendTo(contenedor);
             
                 // Añade encabezados a la tabla
