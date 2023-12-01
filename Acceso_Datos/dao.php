@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('conexion.php');
 
 class MiDAO
@@ -120,7 +121,6 @@ class MiDAO
             $credencialesCorrectas = $stmtVerificarCredenciales->fetchColumn();
 
             if ($credencialesCorrectas > 0) {
-                session_start();
                 // Obtener el cargo del usuario desde la tabla empleados
                 $sqlObtenerCargo = "SELECT cargo FROM empleados WHERE identificacion = :identificacion";
                 $stmtObtenerCargo = $this->conn->prepare($sqlObtenerCargo);
@@ -135,6 +135,7 @@ class MiDAO
                 return 1;
             } else {
                 return 2;
+                session_destroy();
             }
         } catch (PDOException $e) {
             return "Error: " . $e->getMessage();
