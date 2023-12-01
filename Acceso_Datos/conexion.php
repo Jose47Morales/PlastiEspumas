@@ -1,5 +1,5 @@
 <?php
-session_star();
+session_start();
 class Database { 
     private static $instance = null;
     private $conn;
