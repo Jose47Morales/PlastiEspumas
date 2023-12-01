@@ -51,7 +51,7 @@
         <div class="sidebar">
             <button class="link" onclick="entradahoy()">Entradas de hoy</button>
             <select id="seleccionOpciones" >
-                <option selected disabled>Seleccione un cargo</option>
+                <option></option>
             </select>
             <br>
             <input type="text" id="datepicker">
@@ -81,11 +81,16 @@
                 var selectcargo = $("#seleccionOpciones");
                 selectcargo.empty(); // Limpiar opciones antes de agregar nuevas
 
-                var option = $('<option></option>').attr('value', "");
+                var option = $('<option></option>').attr('value', "").text("Cargo");
                 selectcargo.append(option);
                 $.each(datos, function (index, value) {
                     selectcargo.append($("<option>").text(value).val(value));
                 });
+
+                selectcargo.val("").prop('selected', true);
+
+                // Deshabilitar la opción seleccionada
+                selectcargo.find('option[value=""]').prop('disabled', true);
 
                 selectcargo.on('change', function () {
                     // Obtener el texto seleccionado
