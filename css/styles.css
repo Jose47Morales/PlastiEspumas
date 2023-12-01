@@ -92,12 +92,11 @@ a:hover {
     }
 
     .tables_container{
-        display: grid;
+        display: inline-block;
     }
 
     #t1, #t2{
-        display: block;
-        margin-bottom: 30px;
+        margin: 30px;
     }
 }
 
