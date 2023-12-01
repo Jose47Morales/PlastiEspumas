@@ -92,21 +92,6 @@
 
             });
 
-
-            function loadContent(page) {
-                $.ajax({
-                    url: page, // Ruta del archivo HTML o PHP que contiene el contenido
-                    method: 'GET',
-                    success: function (data) {
-                        // Actualizar el contenido principal con el contenido cargado
-                        $('#contenido').html(data);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error('Error al cargar el contenido:', error);
-                    }
-                });
-            }
-
             function tuFuncionAlSeleccionar(seleccion) {
                 if (seleccion == "Cargo") {
 
