@@ -15,9 +15,10 @@ header {
 
 button {
     background-color: #333;
-    color: white;
+    color: white !important;
     border-radius: 15px;
     transition: .5s;
+    margin: 2px;
 }
 
 button:hover {
@@ -27,13 +28,13 @@ button:hover {
 
 @media (max-widht: 750px){
     button, select, #datepicker{
-        transform: scale(.8);
+        transform: scale(0.8);
     }
 }
 
 @media (max-widht: 550px){
     button, select, #datepicker{
-        transform: scale(.6);
+        transform: scale(0.6);
     }
 }
 
