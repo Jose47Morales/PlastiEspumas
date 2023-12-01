@@ -85,3 +85,25 @@ a:hover {
     border: 1px solid #ddd;
     padding: 10px;
 }
+
+@media screen and (max-width: 750px) {
+    html{
+        font-size: 12px;
+    }
+
+    .tables_container{
+        justify-content: center;
+    }
+
+    #t1{
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    html{
+        font-size: 10px;
+    }
+
+
+}
