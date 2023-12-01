@@ -20,6 +20,8 @@ if (isset($_POST['controlador'])) {
         echo json_encode($resultado); // Devolver la respuesta al AJAX)    
     } elseif (is_numeric($resultado)) {
         echo $resultado; // Devolver la respuesta al AJAX
+    } else{
+        echo "Error en el servidor: " . $resultado;
     }
 }
 
