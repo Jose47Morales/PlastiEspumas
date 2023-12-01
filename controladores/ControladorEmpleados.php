@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('modelos/EmpleadosModelo.php');
 require_once('repocitorios/EmpleadosRepositorio.php');
 
@@ -19,7 +20,6 @@ class ControladorEmpleados
     public function mostrarEmpleado($datosFormulario)
     {
 
-        session_start();
         $usuario = $_SESSION['identificacionI'];
         $this->modeloEmpreados->identificacion = $usuario;
         $respuesta = $this->EmpleadosRepo->mostrarEmpleado($this->modeloEmpreados);
@@ -40,7 +40,6 @@ class ControladorEmpleados
     public function Registro($datosFormulario)
     {
       
-        session_start();
         $Huella = $_SESSION['huellaI'];
         $this->modeloEmpreados->huella = $Huella;
         $this->modeloEmpreados->limit = $datosFormulario["limit"];
@@ -52,7 +51,7 @@ class ControladorEmpleados
  
     public function mostrarEmpleadoAdmin($datosFormulario)
     {
-        session_start();
+
         $id = $_SESSION['identificacionU'];
         $this->modeloEmpreados->identificacion = $id;
         $respuesta = $this->EmpleadosRepo->mostrarEmpleado($this->modeloEmpreados);
@@ -61,7 +60,7 @@ class ControladorEmpleados
 
     public function RegistroAdmin($datosFormulario)
     {
-        session_start();
+
         $Huella = $_SESSION['huellaU'];
         $this->modeloEmpreados->huella = $Huella;
         $this->modeloEmpreados->limit = $datosFormulario["limit"];
@@ -78,7 +77,6 @@ class ControladorEmpleados
     public function MostrarEmpleadosCargo($datosFormulario)
     {
 
-        session_start();
         $this->modeloEmpreados->cargo = $_SESSION['cargoU'];
         $this->modeloEmpreados->limit = $datosFormulario["limit"];
         $this->modeloEmpreados->offset = $datosFormulario["offset"];
@@ -105,7 +103,6 @@ class ControladorEmpleados
     }
     public function setCargo($datosFormulario)
     {
-        session_start();
         $_SESSION['cargoU'] = $datosFormulario['cargo'];
 
         echo $_SESSION['cargoU'];
@@ -113,13 +110,11 @@ class ControladorEmpleados
 
     public function setHuellaID($datosFormulario)
     {
-        session_start();
         $_SESSION['huellaU'] = $datosFormulario['huella'];
         echo $_SESSION['huellaU'];
     }
     public function setIDE($datosFormulario)
     {
-        session_start();
         $_SESSION['identificacionU'] = $datosFormulario['identificacion'];
         echo $_SESSION['identificacion'];
     }
