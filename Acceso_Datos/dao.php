@@ -120,6 +120,7 @@ class MiDAO
             $credencialesCorrectas = $stmtVerificarCredenciales->fetchColumn();
 
             if ($credencialesCorrectas > 0) {
+                session_start();
                 // Obtener el cargo del usuario desde la tabla empleados
                 $sqlObtenerCargo = "SELECT cargo FROM empleados WHERE identificacion = :identificacion";
                 $stmtObtenerCargo = $this->conn->prepare($sqlObtenerCargo);
@@ -127,7 +128,10 @@ class MiDAO
                 $stmtObtenerCargo->execute();
                 $cargo = $stmtObtenerCargo->fetchColumn();
 
-                header('Location: session.php');
+                $_SESSION['identificacionI'] = $usuario;
+                $_SESSION['cargoI'] = $cargo;
+                $hella = $this->mostrarEmpleadoHuella($usuario);
+                $_SESSION['huellaI'] = $hella;
                 return 1;
             } else {
                 return 2;
