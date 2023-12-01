@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styles.css">
     <title>Registros antes y después de las 8:00 AM</title>
     <!-- jQuery -->
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -22,10 +21,20 @@
           }
         
           @media (max-width: 750px) {
+            html {
+                font-size: 12px;
+            }
             #t1, #t2 {
               width: 100%; /* Hacer que las tablas ocupen todo el ancho cuando la pantalla sea pequeña */
             }
           }
+        @media (max-width: 580px){
+            html {
+                font-size: 10px;
+            }
+        }
+
+         
 
         th,
         td {
