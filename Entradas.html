@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registros antes y después de las 8:00 AM</title>
+        <!-- CSS de DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- DataTables JS -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         /* Estilo para las tablas */
@@ -85,46 +94,55 @@
             }
 
             // Función para construir una tabla y agregarla al contenedor especificado
+            
             function construirTabla(datos, contenedor, tipo) {
-    var tabla = $('<table>').addClass('table table-bordered table-hover').appendTo(contenedor);
-    var thead = $('<thead>').addClass('table-primary').appendTo(tabla);
-    var tbody = $('<tbody>').appendTo(tabla);
-
-    // Lista de columnas que quieres mostrar
-    var columnasMostradas = ['Identificacion', 'Nombre', 'Cargo', 'Tipo de acceso', 'Estado', 'Hora de ingreso'];
-    var filtro = ['identificacion', 'nombre', 'cargo', 'access_type', 'status', 'date_time'];
-
-    // Añade encabezados a la tabla solo para las columnas mostradas
-    var headerRow = $('<tr>').appendTo(thead);
-    columnasMostradas.forEach(function (columna) {
-        $('<th>').text(columna).appendTo(headerRow);
-    });
-
-    // Añade filas de datos a la tabla solo para las columnas mostradas y con filtro por access_type
-    datos.forEach(function (row, index) {
-        if (row['access_type'] === 'Entrada') {
-            var dataRow = $('<tr>').appendTo(tbody);
-
-            // Añade celdas solo para las columnas mostradas
-            filtro.forEach(function (columna) {
-                $('<td>').text(row[columna]).appendTo(dataRow);
-            });
-
-            // Asigna colores específicos a las filas según el tipo de tabla
-            if (tipo === 'AntesDe8AM') {
-                dataRow.css('background-color', (index % 2 === 0) ? 'blue' : 'blue');
-                dataRow.css('color', (index % 2 === 0) ? 'white' : 'white');
-            } else if (tipo === 'DespuesDe8AM') {
-                dataRow.css('background-color', (index % 2 === 0) ? 'red' : 'red');
-                dataRow.css('color', (index % 2 === 0) ? 'white' : 'white');
+                var tabla = $('<table>').addClass('table table-bordered table-hover').appendTo(contenedor);
+            
+                // Añade encabezados a la tabla
+                var thead = $('<thead>').addClass('table-primary').appendTo(tabla);
+                var headerRow = $('<tr>').appendTo(thead);
+            
+                // Lista de columnas que quieres mostrar
+                var columnasMostradas = ['Identificacion', 'Nombre', 'Cargo', 'Tipo de acceso', 'Estado', 'Hora de ingreso'];
+            
+                // Añade encabezados a la tabla solo para las columnas mostradas
+                columnasMostradas.forEach(function (columna) {
+                    $('<th>').text(columna).appendTo(headerRow);
+                });
+            
+                // Añade filas de datos a la tabla
+                var tbody = $('<tbody>').appendTo(tabla);
+                datos.forEach(function (row) {
+                    // Añade celdas solo para las columnas mostradas
+                    var dataRow = $('<tr>').appendTo(tbody);
+                    columnasMostradas.forEach(function (columna) {
+                        $('<td>').text(row[columna]).appendTo(dataRow);
+                    });
+                });
+            
+                // Inicializa DataTables
+                tabla.DataTable({
+                    paging: true,
+                    searching: true,
+                    // Puedes añadir más opciones de configuración según tus necesidades
+                });
+            
+                // Asigna colores específicos a las filas según el tipo de tabla
+                var filas = tbody.find('tr');
+                filas.each(function (index) {
+                    if (tipo === 'AntesDe8AM') {
+                        $(this).css('background-color', (index % 2 === 0) ? 'blue' : 'blue');
+                        $(this).css('color', (index % 2 === 0) ? 'white' : 'white');
+                    } else if (tipo === 'DespuesDe8AM') {
+                        $(this).css('background-color', (index % 2 === 0) ? 'red' : 'red');
+                        $(this).css('color', (index % 2 === 0) ? 'white' : 'white');
+                    }
+                });
+            
+                contenedor.css('overflow-x', 'auto');
+                contenedor.css('text-align', 'center');
+                tabla.css('margin', 'auto');
             }
-        }
-    });
-
-    contenedor.css('overflow-x', 'auto');
-    contenedor.css('text-align', 'center');
-    tabla.css('margin', 'auto');
-}
 
 
 
