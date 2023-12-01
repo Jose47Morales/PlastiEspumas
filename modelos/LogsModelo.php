@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 class LogsModelo{
 
 public $date_time;
@@ -8,4 +9,4 @@ public $mes;
 
 public $dia;
 }
-?>   
+?>
