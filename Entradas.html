@@ -43,6 +43,10 @@
             #t2 table td {
                 font-size: 10px; /* Puedes ajustar este valor según tus necesidades */
             }
+
+            button, select, #datepicker{
+                transform: scale(0.8) !important;
+            }
         }
 
         @media (max-width: 580px) {
@@ -53,6 +57,10 @@
             #t1 table td,
             #t2 table td {
                 font-size: 8px; /* Puedes ajustar este valor según tus necesidades */
+            }
+
+            button, select, #datepicker{
+                transform: scale(0.6) !important;
             }
         }
 
@@ -76,6 +84,19 @@
 
         select, option{
             color: black !important;
+        }
+
+        button {
+            background-color: #333;
+            color: white !important;
+            border-radius: 15px;
+            transition: .5s;
+            margin: 3px !important;
+        }
+        
+        button:hover {
+            cursor: pointer;
+            transform: scale(1.1);
         }
     </style>
 
