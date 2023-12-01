@@ -28,7 +28,7 @@
         <h1>Registros</h1>
 
     </div>
-    <Script src="librerias/jquery-3.6.3.min.js"> </Script>
+    <script src="librerias/jquery-3.6.3.min.js"></script>
     <script src="librerias/sweetalert.min.js"></script>
     <script>
         function InicioUsuario() {
@@ -38,7 +38,11 @@
             var password = $("#password").val();
         
             if (usuario == "" || password == "") {
-                alert("Faltan datos por llenar");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Faltan datos por llenar',
+                });
             } else {
 
                 showLoader();
@@ -54,13 +58,21 @@
                     success: function (response) {                     
                         console.log(response);
                         if (response == 2) {
-                            alert("Aun no se ha Registrado en el Dispositivo");
+                            Swal.fire({
+                                icon: 'info',
+                                title: 'Información',
+                                text: 'Aun no se ha Registrado en el Dispositivo',
+                            });
                         } else if (response == 1) {
                             limpiarCampos();
                             CargoUsuario(usuario);
                             hideLoader();                      
                         } else {
-                            alert("Error de Registro");
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Error de Registro',
+                            });
                         }
 
                     },
