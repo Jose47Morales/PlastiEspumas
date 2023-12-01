@@ -129,7 +129,6 @@
                 tabla.DataTable({
                     paging: true,
                     searching: true,
-                    // Puedes añadir más opciones de configuración según tus necesidades
                 });
 
             
@@ -137,7 +136,7 @@
                 var filas = tbody.find('tr');
                 filas.each(function (index) {
                     if (tipo === 'AntesDe8AM') {
-                        $(this).css('background-color', (index % 2 === 0) ? 'blue' : 'blue');
+                        $(this).css('background-color', (index % 2 === 0) ? 'green' : 'green');
                         $(this).css('color', (index % 2 === 0) ? 'white' : 'white');
                     } else if (tipo === 'DespuesDe8AM') {
                         $(this).css('background-color', (index % 2 === 0) ? 'red' : 'red');
