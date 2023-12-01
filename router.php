@@ -1,4 +1,9 @@
 <?php
+// Configuración de CORS
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
 if (isset($_POST['controlador'])) {
     $controller = $_POST['controlador'];
     $accion = $_POST['accion'];
