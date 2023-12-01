@@ -62,7 +62,7 @@
     </div>
 
     <script src="librerias/jquery-3.6.3.min.js"></script>
-    <script src="librerias/sweetalert.min.js"></script>
+    <script src="librerias/sweetalert2@10.js"></script>
     <script>
 
 
@@ -213,18 +213,23 @@
         }
 
         function loadContent(page) {
+            console.log('Antes de cargar contenido, página:', page);
+        
             $.ajax({
-                url: page, // Ruta del archivo HTML o PHP que contiene el contenido
+                url: page,
                 method: 'GET',
                 success: function (data) {
-                    // Actualizar el contenido principal con el contenido cargado
+                    console.log('Contenido cargado con éxito:', data);
                     $('#contenido').html(data);
                 },
                 error: function (xhr, status, error) {
                     console.error('Error al cargar el contenido:', error);
                 }
             });
+        
+            console.log('Después de cargar contenido');
         }
+
         entradahoy();
         function CerrarSession() {
             var accion = "cerrarSession";
