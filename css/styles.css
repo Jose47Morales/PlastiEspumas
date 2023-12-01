@@ -86,25 +86,4 @@ a:hover {
     padding: 10px;
 }
 
-@media screen and (max-width: 750px) {
-    html{
-        font-size: 12px;
-    }
 
-    .tables_container{
-        display: inline-block;
-    }
-
-    #t1, #t2{
-        width: 100%;
-        margin: 30px;
-    }
-}
-
-@media screen and (max-width: 580px) {
-    html{
-        font-size: 10px;
-    }
-
-
-}
