@@ -14,41 +14,37 @@
             justify-content: space-around;
             flex-wrap: wrap;
             margin: 10px;
-          }
-        
-          #t1, #t2 {
-            width: 48%; /* O cualquier ancho deseado */
-            margin-bottom: 10px; /* Espaciado entre las tablas */
-          }
-        
-          @media (max-width: 750px) {
-            html {
-                font-size: 12px;
-            }
-            #t1, #t2 {
-              width: 100%; /* Hacer que las tablas ocupen todo el ancho cuando la pantalla sea pequeña */
-            }
+        }
 
-            .table_container{
+        #t1, #t2 {
+            width: 48%;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 750px) {
+            .tables_container {
                 flex-direction: column;
                 align-items: center;
             }
 
-            table td{
+            #t1, #t2 {
+                width: 100%;
+            }
+
+            table td {
                 font-size: 10px;
             }
-          }
-        @media (max-width: 580px){
+        }
+
+        @media (max-width: 580px) {
             html {
                 font-size: 10px;
             }
 
-            table td{
+            table td {
                 font-size: 8px;
             }
         }
-
-         
 
         th,
         td {
@@ -57,41 +53,39 @@
             text-align: left;
         }
 
-   
-    table {
-        max-width: 75%;
-        border-spacing: 0;
-        border-collapse: collapse;
-        overflow-x: auto;
-    }
+        table {
+            max-width: 75%;
+            border-spacing: 0;
+            border-collapse: collapse;
+            overflow-x: auto;
+        }
 
-    table td {
-        font-size: 12px;
-    }
-</style>
+        table td {
+            font-size: 12px;
+        }
+    </style>
 
 </head>
 
 <body>
 
-    <div class="tables_container" style="display: flex; justify-content: space-around;">
+    <div class="tables_container">
         <div id="t1">
-
+            <!-- Contenido de la tabla t1 -->
         </div>
 
         <div id="t2">
-
+            <!-- Contenido de la tabla t2 -->
         </div>
     </div>
 
 
     <script>
-
         $(document).ready(function () {
-            // Función para realizar la consulta y mostrar los resultados en una tabla
+
             function mostrarRegistros(tipo) {
                 $.ajax({
-                    url: 'router.php', // Ajusta la ruta a tu archivo PHP
+                    url: 'router.php',
                     method: 'POST',
                     data: {
                         accion: 'obtenerRegistros' + tipo,
@@ -103,7 +97,7 @@
                         console.log('Datos recibidos:', datos);
 
                         if (tipo == "AntesDe8AM") {
-                            construirTabla(datos,  $('#t1'), "AntesDe8AM");
+                            construirTabla(datos, $('#t1'), "AntesDe8AM");
                         } else if (tipo == "DespuesDe8AM") {
                             construirTabla(datos, $('#t2'), "DespuesDe8AM");
                         }
@@ -114,43 +108,35 @@
                 });
             }
 
-            // Función para obtener la fecha actual en formato 'YYYY-MM-DD'
             function obtenerFechaActual() {
                 var today = new Date();
                 var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0'); // Enero es 0!
+                var mm = String(today.getMonth() + 1).padStart(2, '0');
                 var yyyy = today.getFullYear();
                 return yyyy + '-' + mm + '-' + dd;
             }
 
-            // Función para construir una tabla y agregarla al contenedor especificado
-            
             function construirTabla(datos, contenedor, tipo) {
                 var tabla = $('<table>').addClass('table table-bordered table-hover').appendTo(contenedor);
                 var thead = $('<thead>').addClass('table-primary').appendTo(tabla);
                 var tbody = $('<tbody>').appendTo(tabla);
-            
-                // Lista de columnas que quieres mostrar
+
                 var columnasMostradas = ['Identificacion', 'Nombre', 'Cargo', 'Tipo de acceso', 'Estado', 'Hora de ingreso'];
                 var filtro = ['identificacion', 'nombre', 'cargo', 'access_type', 'status', 'date_time'];
-            
-                // Añade encabezados a la tabla solo para las columnas mostradas
+
                 var headerRow = $('<tr>').appendTo(thead);
                 columnasMostradas.forEach(function (columna) {
                     $('<th>').text(columna).appendTo(headerRow);
                 });
-            
-                // Añade filas de datos a la tabla solo para las columnas mostradas y con filtro por access_type
+
                 datos.forEach(function (row, index) {
                     if (row['access_type'] === 'Entrada') {
                         var dataRow = $('<tr>').appendTo(tbody);
-            
-                        // Añade celdas solo para las columnas mostradas
+
                         filtro.forEach(function (columna) {
                             $('<td>').text(row[columna]).appendTo(dataRow);
                         });
-            
-                        // Asigna colores específicos a las filas según el tipo de tabla
+
                         if (tipo === 'AntesDe8AM') {
                             dataRow.css('background-color', (index % 2 === 0) ? 'blue' : 'blue');
                             dataRow.css('color', (index % 2 === 0) ? 'white' : 'white');
@@ -160,87 +146,15 @@
                         }
                     }
                 });
-            
+
                 contenedor.css('overflow-x', 'auto');
                 contenedor.css('text-align', 'center');
                 tabla.css('margin', 'auto');
             }
 
-
-            function tablaTemprano(datos) {
-
-                var tabla = $('#contenedorTablaAntesDe8AM');
-
-                for (var i = 0; i < datos.length; i++) {
-                    var fila = $('<tr>');
-
-                    var celdaIdentificacion = $('<td>').text(datos[i].identificacion);
-                    fila.append(celdaIdentificacion);
-                    celdaIdentificacion.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    var celdaNombre = $('<td>').text(datos[i].nombre);
-                    fila.append(celdaNombre);
-                    celdaNombre.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    var celdaCargo = $('<td>').text(datos[i].cargo);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-                    var celdaCargo = $('<td>').text(datos[i].access_type);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-                    var celdaCargo = $('<td>').text(datos[i].status);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    var celdaCargo = $('<td>').text(datos[i].date_time);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    tabla.append(fila);
-                }
-            }
-
-            function tablaTarde(datos) {
-
-                var tabla = $('#contenedorTablaDespuesDe8AM');
-
-                for (var i = 0; i < datos.length; i++) {
-                    var fila = $('<tr>');
-
-                    var celdaIdentificacion = $('<td>').text(datos[i].identificacion);
-                    fila.append(celdaIdentificacion);
-                    celdaIdentificacion.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    var celdaNombre = $('<td>').text(datos[i].nombre);
-                    fila.append(celdaNombre);
-                    celdaNombre.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    var celdaCargo = $('<td>').text(datos[i].cargo);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-                    var celdaCargo = $('<td>').text(datos[i].access_type);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-                    var celdaCargo = $('<td>').text(datos[i].status);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    var celdaCargo = $('<td>').text(datos[i].date_time);
-                    fila.append(celdaCargo);
-                    celdaCargo.css('text-shadow', '2px 2px 4px rgba(0, 0, 0, 0.2)');
-
-                    tabla.append(fila);
-                }
-            }
             mostrarRegistros("AntesDe8AM");
             mostrarRegistros("DespuesDe8AM");
         });
-
-
-
-
-
-
     </script>
 
 </body>
