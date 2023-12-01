@@ -13,8 +13,7 @@
     
     <!-- DataTables JS -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
     <style>
         /* Estilo para las tablas */
      
@@ -96,6 +95,7 @@
             // Función para construir una tabla y agregarla al contenedor especificado
             
             function construirTabla(datos, contenedor, tipo) {
+                console.log(datos);
                 var tabla = $('<table>').addClass('table table-bordered table-hover').appendTo(contenedor);
             
                 // Añade encabezados a la tabla
