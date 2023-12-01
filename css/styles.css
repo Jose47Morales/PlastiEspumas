@@ -92,10 +92,12 @@ a:hover {
     }
 
     .tables_container{
-        justify-content: center;
+        display: grid;
+        place-items: center;
     }
 
     #t1{
+        display: block;
         margin-bottom: 30px;
     }
 }
