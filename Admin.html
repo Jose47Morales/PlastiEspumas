@@ -46,7 +46,8 @@
 
         <div class="sidebar">
             <button class="link" onclick="entradahoy()">Entradas de hoy</button>
-            <select id="seleccionOpciones">
+            <select id="seleccionOpciones" >
+                <option selected disabled>Seleccione un cargo</option>
             </select>
             <br>
             <input type="text" id="datepicker">
@@ -76,7 +77,7 @@
                 var selectcargo = $("#seleccionOpciones");
                 selectcargo.empty(); // Limpiar opciones antes de agregar nuevas
 
-                var option = $('<option></option>').attr('value', "").text("Cargo");
+                var option = $('<option></option>').attr('value', "");
                 selectcargo.append(option);
                 $.each(datos, function (index, value) {
                     selectcargo.append($("<option>").text(value).val(value));
