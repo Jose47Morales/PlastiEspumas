@@ -128,12 +128,6 @@ class MiDAO
                 $cargo = $stmtObtenerCargo->fetchColumn();
 
                 header('Location: session.php');
-
-                // Establecer una variable de sesión
-                $_SESSION['identificacionI'] = $usuario;
-                $_SESSION['cargoI'] = $cargo;
-                $hella = $this->mostrarEmpleadoHuella($usuario);
-                $_SESSION['huellaI'] = $hella;
                 return 1;
             } else {
                 return 2;
