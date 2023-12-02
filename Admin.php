@@ -60,7 +60,7 @@ session_start();
       min-height: 70px;
      }
 
-     .informacion{
+     #informacion{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
     }
