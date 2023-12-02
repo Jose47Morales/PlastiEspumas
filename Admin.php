@@ -52,6 +52,10 @@ session_start();
             max-width: 135px;
             margin: 3px !important;
         }
+
+     .nav-container{
+      min-height: 70px;
+     }
     </style>
 </head>
 
