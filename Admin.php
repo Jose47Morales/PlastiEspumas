@@ -1,3 +1,6 @@
+<?php
+ if(isset($_SESSION['identificacionI'])){
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -425,3 +428,8 @@
 </body>
 
 </html>
+<?php
+ } else{
+     header('Location: ./InicioSesion.html');
+ }
+?>
