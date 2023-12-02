@@ -46,7 +46,10 @@ session_start();
             max-width: 145px;
         }
         
-        #datepicker,
+        #datepicker{
+            width: 130px;    
+        }
+     
         #seleccionOpciones,
         .sidebar button {
             max-width: 135px;
