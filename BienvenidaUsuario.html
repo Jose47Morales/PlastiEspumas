@@ -51,9 +51,9 @@
 
     #registrosContainer {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: grid;
         /* Permite que los elementos se envuelvan en una nueva línea si no caben */
-        justify-content: space-between;
+        grid-template-columns: repeat(4, 1fr);
         /* Espacio entre los elementos */
     }
     .tarjeta-container {
@@ -63,7 +63,7 @@
     }
 
     .tarjeta {
-        width: calc(20% - 20px);
+        width: 110px;
         box-sizing: border-box;
         border: 2px solid blue;
         padding: 5px;
@@ -107,6 +107,9 @@
         background-color: #2980b9;
     }
 
+    #EmpleadoImg{
+        width: 80%;
+    }
 </style>
 
 </head>
