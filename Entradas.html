@@ -25,7 +25,7 @@
         select, option{
             color: black !important;
         }
-
+        
         @media (max-width: 750px) {
             .tables_container {
                 flex-direction: column;
@@ -47,6 +47,10 @@
             #t2 table td {
                 font-size: 10px; /* Puedes ajustar este valor según tus necesidades */
             }
+
+            button, select, #datepicker{
+                transform: scale(0.8) !important;
+            }
         }
 
         @media (max-width: 580px) {
@@ -58,6 +62,15 @@
             #t2 table td {
                 font-size: 8px; /* Puedes ajustar este valor según tus necesidades */
             }
+
+             html {
+                font-size: 10px;
+            }
+
+            button, select, #datepicker{
+                transform: scale(0.6) !important;
+            }
+            
         }
 
         th,
