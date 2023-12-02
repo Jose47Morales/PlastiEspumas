@@ -30,47 +30,50 @@
     <script src="librerias/sweetalert.min.js"></script>
     <script>
         function RegistrarUsuario() {
-            var accion = "registrarUsuario";
-            var usuario = $("#usuario").val();
-            var password = $("#password").val();
-            var password2 = $("#password2").val();
-            if (usuario == "" || password == "" || password2 == "") {
-                alert("Faltan datos por llenar");
-            } else {              
-                if (password2 == password) {
-                    $.ajax({
-                        url: 'router.php',
-                        method: 'POST',
-                        data: {
-                            controlador: 'Login',
-                            accion: accion,
-                            usuario: usuario,
-                            password: password
-                        },
-                        success: function (response) {
-                            console.log(response);
-        
-                            if (response == 2) {
-                                alert("Aun no se ha Registrado en el Dispositivo");
-                            } else if (response == 1) {
-                               
-                                swal("¡Éxito!, ¡Ya puede Iniciar Session, success");
-                                limpiarCampos();
-                                window.location.href = "InicioSesion.html";
-                            } else {
-                                alert("Error de Registro");
-                            }
+    var accion = "registrarUsuario";
+    var usuario = $("#usuario").val();
+    var password = $("#password").val();
+    var password2 = $("#password2").val();
 
-                        },
-                        error: function (error) {
-                            console.error(error);
+    if (usuario == "" || password == "" || password2 == "") {
+        alert("Faltan datos por llenar");
+    } else {
+        if (password2 == password) {
+            $.ajax({
+                url: 'router.php',
+                method: 'POST',
+                data: {
+                    controlador: 'Login',
+                    accion: accion,
+                    usuario: usuario,
+                    password: password
+                },
+                success: function (response) {
+                                    console.log(response);
+                
+                                    // Comparar con una cadena en lugar de un número
+                                    if (response.trim() === "1") {
+                                        swal("¡Éxito!, ¡Ya puede Iniciar Session, success");
+                                        setTimeout(function () {
+                                        limpiarCampos();
+                                        window.location.href = "InicioSesion.html";
+                                    }, 3000);
+                                    } else if (response.trim() === "2") {
+                                        alert("Aun no se ha Registrado en el Dispositivo");
+                                    } else {
+                                        alert("Error de Registro");
+                                    }
+                                },
+                                error: function (error) {
+                                    console.error(error);
+                                }
+                            });
+                        } else {
+                            alert("La Contraseña no es la Misma");
                         }
-                    });
-                } else {
-                    alert("La Contraseña no es la Misma");
+                    }
                 }
-            }
-        }
+
 
         function limpiarCampos() {
             var usuario = document.getElementById('usuario').value = "";;
