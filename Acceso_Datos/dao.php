@@ -131,7 +131,6 @@ class MiDAO
                 $_SESSION['cargoI'] = $cargo;
                 $hella = $this->mostrarEmpleadoHuella($usuario);
                 $_SESSION['huellaI'] = $hella;
-                error_log($_SESSION['identificacionI']);
                 return 1;
             } else {
                 return 2;
