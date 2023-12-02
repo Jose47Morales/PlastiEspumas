@@ -59,6 +59,12 @@ session_start();
      .nav-container{
       min-height: 70px;
      }
+
+     .informacion{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+     }
     </style>
 </head>
 
