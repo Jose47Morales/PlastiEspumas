@@ -52,22 +52,6 @@ session_start();
             max-width: 135px;
             margin: 3px !important;
         }
-
-        @media (max-width: 750px) {
-            button, select, #datepicker{
-                transform: scale(0.8) !important;
-            }
-        }
-
-        @media (max-width: 580px) {
-            html {
-                font-size: 10px;
-            }
-
-            button, select, #datepicker{
-                transform: scale(0.6) !important;
-            }
-        }
     </style>
 </head>
 
