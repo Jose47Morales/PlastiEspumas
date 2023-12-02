@@ -42,13 +42,13 @@
             justify-content: start;
             text-align: center;
             gap: 3px;
-            min-width: 150px;
+            min-width: 145px;
         }
         
         #datepicker,
         #seleccionOpciones,
         .sidebar button {
-            max-width: 140px;
+            max-width: 135px;
             margin: 3px !important;
         }
 
