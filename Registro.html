@@ -60,7 +60,11 @@
                     } else if (response.trim() === "2") {
                         alert("Aun no se ha Registrado en el Dispositivo");
                      } else {
-                        alert("Error de Registro");
+                        swal("¡Éxito!, ¡Ya puede Iniciar Session, success");
+                        setTimeout(function () {
+                        limpiarCampos();
+                        window.location.href = "InicioSesion.html";
+                            }, 3000);
                         }
                         },
                         error: function (error) {
