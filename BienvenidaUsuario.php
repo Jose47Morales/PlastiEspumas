@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+if($_SESSION['identificacionI']){
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -109,7 +114,7 @@
     }
 
     #logo{
-        width: 40%;
+        width: 200px;
     }
 </style>
 
@@ -303,8 +308,11 @@
       } 
 
     </script>
-
-
 </body>
 
+
 </html>
+<?php
+} else{
+    header('Location: ./InicioSesion.html');
+}
