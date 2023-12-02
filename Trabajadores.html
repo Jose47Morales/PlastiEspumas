@@ -92,6 +92,7 @@
 
         #paginacionContainer button {
             background-color: #3498db;
+            margin: 5px;
             color: #fff;
             padding: 10px;
             border: none;
@@ -144,6 +145,20 @@
         #paginacionContainer {
             margin-top: 20px;
             /* Ajuste del margen superior */
+        }
+
+        @media (max-width: 750px){
+            #anterior, #paginaActual, #siguiente{
+                transform: scale(0.8);
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width: 550px){
+            #anterior, #paginaActual, #siguiente{
+                transform: scale(0.6);
+                font-size: 8px;
+            }
         }
     </style>
 
