@@ -114,7 +114,7 @@ if($_SESSION['identificacionI']){
     }
 
     #logo{
-        width: 200px;
+        width: 150px;
     }
 </style>
 
