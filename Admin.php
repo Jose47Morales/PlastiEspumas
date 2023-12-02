@@ -43,13 +43,13 @@ session_start();
             justify-content: start;
             text-align: center;
             gap: 3px;
-            min-width: 145px;
+            min-width: 135px;
         }
         
         #datepicker,
         #seleccionOpciones,
         .sidebar button {
-            max-width: 135px;
+            max-width: 125px;
             margin: 3px !important;
         }
     </style>
