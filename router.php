@@ -4,6 +4,11 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("HTTP/1.1 200 OK");
+    exit();
+}
+
 if (isset($_POST['controlador'])) {
     $controller = $_POST['controlador'];
     $accion = $_POST['accion'];
@@ -20,7 +25,7 @@ if (isset($_POST['controlador'])) {
     } elseif (is_numeric($resultado)) {
         echo $resultado; // Devolver la respuesta al AJAX
     } else{
-        echo "Error en el servidor: " . $resultado;
+        echo "Error en el servidor: No se pudo completar la acción solicitada.";
     }
 } elseif (isset($_GET['controlador'])) {
     $controller = $_GET['controlador'];
