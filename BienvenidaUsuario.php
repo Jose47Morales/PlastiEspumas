@@ -55,8 +55,8 @@ if($_SESSION['identificacionI']){
     }
 
     #registrosContainer {
-        display: flex;
-        flex-wrap: grid;
+        display: grid;
+        flex-wrap: wrap;
         /* Permite que los elementos se envuelvan en una nueva línea si no caben */
         grid-template-columns: repeat(4, 1fr);
         /* Espacio entre los elementos */
@@ -115,6 +115,36 @@ if($_SESSION['identificacionI']){
 
     #logo{
         width: 150px;
+    }
+
+    @media (max-width: 750px){
+        html{
+            font-size: 12px;
+        }
+
+        .containerbienvenida{
+            transform: scale(0.9);
+        }
+
+        #registrosContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 550px){
+        html{
+            font-size: 10px;
+        }
+
+        .conatinerbienvenida{
+            transform: scale(0.8);
+        }
+
+        #registrosContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        }
     }
 </style>
 
