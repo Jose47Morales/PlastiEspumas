@@ -112,7 +112,30 @@
     width: 300px;
    
 }
-/* Resto de tu estilo para izquierdo-container y otros elementos */
+
+@media (max-width: 750px){
+    html{
+        font-size: 12px;
+    }
+
+    containerbienvenida{
+        transform: scale(0.8);
+    }
+}
+@media (max-width: 580px) {
+            html {
+                font-size: 10px;
+            }
+
+            button, select, #datepicker{
+                transform: scale(0.9) !important;
+            }
+
+            containerbienvenida{
+                transform: scale(0.6);
+            }
+            
+        }
 
 
 </style>
