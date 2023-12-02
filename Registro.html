@@ -49,25 +49,24 @@
                     password: password
                 },
                 success: function (response) {
-                                    console.log(response);
-                
-                                    // Comparar con una cadena en lugar de un número
-                                    if (response.trim() === "1") {
-                                        swal("¡Éxito!, ¡Ya puede Iniciar Session, success");
-                                        setTimeout(function () {
-                                        limpiarCampos();
-                                        window.location.href = "InicioSesion.html";
-                                    }, 3000);
-                                    } else if (response.trim() === "2") {
-                                        alert("Aun no se ha Registrado en el Dispositivo");
-                                    } else {
-                                        alert("Error de Registro");
-                                    }
-                                },
-                                error: function (error) {
-                                    console.error(error);
-                                }
-                            });
+                    console.log("Respuesta:", response);
+                    console.log("Tipo de respuesta:", typeof response);
+                    if (response.trim() === "1") {
+                        swal("¡Éxito!, ¡Ya puede Iniciar Session, success");
+                        setTimeout(function () {
+                        limpiarCampos();
+                        window.location.href = "InicioSesion.html";
+                            }, 3000);
+                    } else if (response.trim() === "2") {
+                        alert("Aun no se ha Registrado en el Dispositivo");
+                     } else {
+                        alert("Error de Registro");
+                        }
+                        },
+                        error: function (error) {
+                        console.error(error);
+                        }
+                        });
                         } else {
                             alert("La Contraseña no es la Misma");
                         }
