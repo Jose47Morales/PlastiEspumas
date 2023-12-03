@@ -333,7 +333,7 @@ if($_SESSION['identificacionI']){
                         method: 'POST',
                         data: { controlador: controlador, accion: accion }, // Datos opcionales que deseas enviar al archivo PHP
                         success: function (response) {
-                            loadContent('./Trabajadores.html');
+                            loadContent('./Trabajadores.php');
                         },
                         error: function (xhr, status, error) {
                             console.error('Error en la solicitud Ajax:', error);
