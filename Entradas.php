@@ -1,3 +1,7 @@
+<?php
+session_start();
+if($_SESSION['identificacionI']){
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -192,7 +196,10 @@
             mostrarRegistros("DespuesDe8AM");
         });
     </script>
-
 </body>
-
 </html>
+    <?php
+} else{
+    header('Location: ./InicioSesion.html');
+}
+?>
