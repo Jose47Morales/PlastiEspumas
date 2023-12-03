@@ -245,7 +245,7 @@ session_start();
 
                     // Limpiar contenido previo.
                     informacionDiv.innerHTML = '';
-                    loadContent('./Entradas.html');
+                    loadContent('./Entradas.php');
 
                 },
                 error: function (xhr, status, error) {
