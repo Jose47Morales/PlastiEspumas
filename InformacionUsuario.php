@@ -171,7 +171,7 @@ if($_SESSION['identificacionI']){
         
         <div id="izquierdo" class="izquierdo-container">
             <div class="nueva-vista">
-                <button class="regresar" ondblclick="IrATrabajadores()">Regresar a trabajadores</button>
+                <button class="regresar" onclick="IrATrabajadores()">Regresar a trabajadores</button>
             </div>
 
             <div class="containerbienvenida">
